@@ -34,11 +34,11 @@ function SubjectComponent() {
  return (
   <div
     style={{
-      background: "#fff",
+      background: "#abf2fc",
       padding: "20px",
       borderRadius: "10px",
       boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-      maxWidth: "900px",
+      maxWidth: "960px",
       margin: "0 auto"
     }}
   >

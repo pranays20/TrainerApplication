@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
+  background-color: #47d0d4;
   margin: 0;
   padding: 0;
 }
@@ -11,7 +11,7 @@ body {
 }
 
 .card {
-  background: #ffffff;
+  background: #abf2fc;
   padding: 20px;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
