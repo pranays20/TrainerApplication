@@ -2,6 +2,9 @@ package com.nexanova.trainerapp.controller;
 
 import com.nexanova.trainerapp.entity.*;
 import com.nexanova.trainerapp.repository.*;
+
+import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -35,4 +38,11 @@ public class TrainerSubjectController {
         TrainerSubject trainerSubject = new TrainerSubject(trainer, subject);
         return trainerSubjectRepository.save(trainerSubject);
     }
+
+
+    @GetMapping("/all")
+    public List<TrainerSubject> getAllTrainerSubjects() {
+        return trainerSubjectRepository.findAll();
+}
+
 }

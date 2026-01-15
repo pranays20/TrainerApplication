@@ -21,6 +21,9 @@ function TrainerComponent() {
   const [editingTrainerId, setEditingTrainerId] = useState(null);
   const [subjects, setSubjects] = useState([]);
 
+  const [trainerSubjects, setTrainerSubjects] = useState([]);
+
+
 
   // Load trainers from backend
   const loadTrainers = () => {
@@ -28,6 +31,8 @@ function TrainerComponent() {
       setTrainers(res.data);
     });
   };
+
+  
 
   useEffect(() => {
     loadTrainers();
@@ -45,8 +50,12 @@ function TrainerComponent() {
     });
 }, []);
    
- 
 
+  useEffect(() => {
+    fetch("http://localhost:8080/api/trainer-subject/all")
+      .then((response) => response.json())  
+      .then((data) => setTrainerSubjects(data));
+  }, []);
 
   // Add new trainer
   const handleAdd = () => {
@@ -254,6 +263,35 @@ const handleAssign = (trainerId) => {
         Assign
       </button>
     </div>
+
+
+          {/* Assigned Subjects List */}
+        <div className="card">
+        <h3>Assigned Subjects</h3>
+
+        {trainerSubjects.length === 0 ? (
+    <p>No assignments found</p>
+  ) : (
+    <table>
+      <thead>
+        <tr>
+          <th>Trainer Name</th>
+          <th>Subject Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {trainerSubjects.map((ts) => (
+          <tr key={ts.id}>
+            <td>{ts.trainer.name}</td>
+            <td>{ts.subject.name}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )}
+</div>
+
+
   </div>
 );
 }
