@@ -42,7 +42,7 @@ function SubjectComponent() {
       margin: "0 auto"
     }}
   >
-    <h2 style={{ marginBottom: "15px" }}>Subject 2 Management</h2>
+    <h2 style={{ marginBottom: "15px" }}>Subject Management</h2>
 
     <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
       <input
