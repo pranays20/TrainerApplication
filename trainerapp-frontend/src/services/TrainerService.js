@@ -42,3 +42,5 @@ export const getTrainerSubjects = () => {
     "http://localhost:8080/api/trainer-subject/all"
   );
 };
+
+

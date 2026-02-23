@@ -2,8 +2,9 @@ package com.nexanova.trainerapp.service;
 
 import com.nexanova.trainerapp.entity.Trainer;
 import com.nexanova.trainerapp.repository.TrainerRepository;
+import com.nexanova.trainerapp.repository.TrainerSubjectRepository;
 
-
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.List;
 public class TrainerService {
 
     private final TrainerRepository trainerRepository;
+    private final TrainerSubjectRepository trainerSubjectRepository;
 
-    public TrainerService(TrainerRepository trainerRepository) {
+    public TrainerService(TrainerRepository trainerRepository, TrainerSubjectRepository trainerSubjectRepository) {
         this.trainerRepository = trainerRepository;
+        this.trainerSubjectRepository = trainerSubjectRepository;
     }
 
     public Trainer saveTrainer(Trainer trainer) {
@@ -25,9 +28,15 @@ public class TrainerService {
         return trainerRepository.findAll();
     }
 
-    public void deleteTrainer(Long id) {
-    trainerRepository.deleteById(id);   
-    }
+    // public void deleteTrainer(Long id) {
+    // trainerRepository.deleteById(id);   
+    // }
+
+@Transactional
+public void deleteTrainer(Long id) {
+    trainerSubjectRepository.deleteByTrainerId(id); // delete links
+    trainerRepository.deleteById(id);               // delete trainer
+}
 
     //update trainer
     public Trainer updateTrainer(Long id, Trainer updatedTrainer) {
@@ -40,5 +49,6 @@ public class TrainerService {
 
         return trainerRepository.save(existingTrainer);
     }
+    
 
 }
